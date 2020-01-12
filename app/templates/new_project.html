@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{% load bootstrap4%}
+{% load crispy_forms_tags %}
+
+    {%block content%}
+  <h1 style="text-align: center;">Add Your Project</h1>
+  
+<div class='panel panel-default' style="width: 400px; margin: auto;">
+  <div class="panel-body">
+    {%crispy form%}
+    {%csrf_token%}
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% bootstrap_javascript %} 
+{% endblock %}

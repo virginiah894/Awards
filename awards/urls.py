@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path,include
 from django.contrib .auth import views
 
+
+app_name = 'ratings'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app.urls')),
     path('accounts/',include('registration.backends.simple.urls')),
+    path('ratings/',include('star_ratings.urls',namespace='ratings')),
     path('logout/',views.logout,{'next_page':'/'}),
 ]

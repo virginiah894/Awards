@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Project, Profile
 from .forms import AccountUpdate, DetailsUpdate,UserProjectForm
 from django.contrib import messages
+
 # Create your views here.
 def home(request):
   projects= Project.objects.all()
@@ -28,12 +29,12 @@ def profile(request):
   current_user = request.user
   
   profile = Profile.objects.get_or_create(user=request.user)
-  projects = request.user.project_set.all()
+  images = request.user.project_set.all()
   
-  project = projects.count()
+  project = images.count()
   
   
-  return render(request,'profile.html',{"profile":profile,'projects':projects,"project":project})
+  return render(request,'profile.html',{"profile":profile,'images':images,"project":project})
 
 def profile_update(request):
   

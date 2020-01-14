@@ -1,24 +1,49 @@
 {% extends 'base.html'%}
+{% load static %}
+{% load ratings %} 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+
+  <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+  <title>Awards</title>
 </head>
 <body>
   {% block content %}
 
 <div class="container">
+  <div class="row">
   {% for project in projects%}
-  
-  <h3>PROJECT NAME: {{project.title}}</h3>
-  <img src="{{project.project_image.url}}" alt="" style="width: 350;height: 350px;">
-  <p>{{project.description}}</p>
-  <a href="{{project.project_link}}" target="_blank">Project Link</a>
+  <div class="col-md-4">
+
+  <div class="card" style="width: 18rem; margin-bottom: 12px;">
+    <img class="card-img-top" src="{{project.project_image.url}}" alt="Card image cap" style="width: 350px;height: 290px;">
+    <div class="card-body">
+      <h5 class="card-title"> {{project.title}}</h5>
+      <p class="card-text">{{project.description}}</p>
+    </div>
+
+
+    <div class="card-body">
+      <a href="{{project.project_link}}" target="_blank">Project Link</a>
+      
+    </div>
+  </div>
+
+
+
+
+  </div>
   {% endfor %}
+</div>
 </div>
 {% endblock %}
 </body>
+
+{% ratings object%}
 </html>

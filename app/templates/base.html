@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% load static%}
+  {% load bootstrap4 %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Awards Application</title>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
- 
+  <link href="https://fonts.googleapis.com/css?family=Autour+One|Chango|Lato|Nosifer&display=swap" rel="stylesheet">
+  {% block styles %}
+     {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
 	</head>
 </head>
 <body>
-  {% load bootstrap4 %}
+ 
   {% load fontawesome_5 %}
+  
+
 <nav> 
   <div class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -20,21 +29,21 @@
       <div class="row">
         <div class="col-md-4">
 
-      <a class="navbar-brand" href="/">The Awards Application</a>
+      <a class="navbar" href="/" style="font-family: 'Lato', sans-serif;">The Awards Application</a>
     </div>
   
   
 
     <div class="col-md-4">
-        <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search project" aria-label="Search" name="project"><i class="fa fa-search" style="color: aliceblue;"></i>
-    </form>
+        <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}" id="one">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search project" aria-label="Search" name="project"><button><i class="fa fa-search" style="color: aliceblue;"></i>
+</button>    </form>
   </div>
   <div class="col-md-4">
       {% if user.is_authenticated %}
       <ul>
         <li class="dropdown" style="padding-left: 90%;">
-          <img src="{{profile.profile_image.url}}" alt="" style="border-radius: 50%; width:50px; height:50px; border-color: brown; border-width: 1px;">
+          <img src="{{user.profile.profile_image.url}}" alt="" style="border-radius: 50%; width:50px; height:50px; border-color: brown; border-width: 1px;">
           <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">{{user.username}}
                     <span class="caret"></span>
                     

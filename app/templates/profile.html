@@ -1,88 +1,53 @@
 {%extends 'base.html'%}
 {% load bootstrap4%}
+{%load static%}
 
 {%block content%}
-
+<div class="container">
 <div class="row">
 
   <div class="col-md-6">
     <div class="ppic">
-      
-      <img src="{{user.profile.profile_image.url}}"  class="img-thumbnail img-responsive img-fluid" alt=""
-                style="border-radius: 50%; width:100px; height:100px; border-color: black; border-width: 1.5px;">
-    
-      <img src="{{ user.profile.profile_image.url }}" alt="{{profile.name}}">
-
-      <h3>{{user.username}}</h3>
-
-      
+      <img src="/{{user.profile.profile_image.url}}" class="img-thumbnail img-responsive img-fluid" alt=""
+        style="border-radius: 50%; width:100px; height:100px; border-color: black; border-width: 1.5px;">
+        <p class="text-secondary" style="font-family: 'Chango', cursive;
+        ">PROFILE:{{ user.profile.bio|linebreaks }}</p>
     </div>
   </div>
   <div class="col-md-6">
-    <h3>{{user.username}}</h3>
-  
-    
-    <div class="profile_media">
-      <!-- <span class="post_count"> <span class="number_of_posts">{{ user.projects.count }}</span> projects</span> --> 
-      <button><a href="{% url 'update'%}" class="bg-bg success">Update Profile</a></button>
-     
-    <button><a href="/logout"></a>logout</button>
-    </div>
+    <h3 style="font-family: 'Autour One', cursive;
+    ">{{user.username}}</h3>
+
+    <button><a href="{% url 'update'%}" style="text-decoration: none;font-family: 'Autour One', cursive;
+      ">EDIT PROFILE</a></button>
+    <a href="{% url 'update'%}"><i class="fa fa-cog" style='color:black;font-size: 30px;'></i></a>
+
     <div>
-      <p class="profilename">{{ user.profile.name }}</p>
-      <p class="text-secondary">{{ user.profile.bio|linebreaks }}</p>
-      <div class="col-sm-6 col-md-7">
+      <p class="profilename" style="font-family: 'Autour One', cursive;
+      ">{{ user.profile.name }}</p>
+         </div>
+  </div>
+</div>
+</div>
 
-        <h4 class="text-center">My Projects</h4>
-        <div class="row mt-2">
-            {% for project in projects %}
-            <div class="col-sm-12 col-md-6 col-lg-6">
-              <p>{{project.title}}</p>
-                <img src="{{project.project_image.url}}" alt="" class="img-thumbnail img-responsive img-fluid">
-            </div>
-            {% endfor %}
-
-        </div>
-
-        <div class="col-sm-6 col-md-5">
-
-        </div>
-
-    </div>
-      
-
-
-    </div>
-    <div class="row">
-
-      {% for image in images %}
-      <div class="col-md-3">
-          <div class="card-column" >
-            <img class="card-img-top" src="{{image.project_image.url}}" alt="Card image cap" style="width: 250px; height: 250px;">
-            <div class="card-body">
-             {% autoescape on %}
-             <h5 class="card-title">{{image.title | safe}}</h5>
-         {% endautoescape %}
-              <h5 class="card-title">{{image.description}}</h5>
-              <!-- <i class="fa fa-heart "></i> -->
-              <a href="" class="btn btn-outline-info btn-sm">reviews</a>
-              
-      
-            </div>
-          </div>
-        
-        </div>
-      
-      {% endfor %}
-      
-      
-      
-      </div>
-      
+<div class="container">
+  <div class="row">
     
+  
+    {% for projo in request.user.project_set.all %}
+    
+      <div class="card" >
+        <img src="/{{projo.project_image.url}}" alt="" style="width: 300px; height: 300px;" >
+        <h5>{{projo.title}}</h5>
+        <h6>{{projo.description}}</h6>
+        <a href="{{projo.project_link}}" target="_blank" style="font-family: 'Nosifer', cursive;
+        color: brown;">Project Link</a>
+        
+        
+      </div>
+    {% endfor %}
+    
+  </div>                    
+</div>
 
-
-
-
-
-{%endblock%}
+{% endblock %}

@@ -19,20 +19,26 @@
 <div class="container">
   <div class="row">
   {% for project in projects%}
+  
+
   <div class="col-md-4">
 
-  <div class="card" style="width: 18rem; margin-bottom: 12px;">
+  <div class="card" style=" margin-bottom: 12px; ">
     <img class="card-img-top" src="{{project.project_image.url}}" alt="Card image cap" style="width: 350px;height: 290px;">
     <div class="card-body">
-      <h5 class="card-title"> {{project.title}}</h5>
+      <h5 class="card-title" style="font-family: 'Oldenburg', cursive;
+      font-weight: bolder; font-size: 1.5em; color: brown;" > {{project.title}}</h5>
       <p class="card-text">{{project.description}}</p>
     </div>
 
 
     <div class="card-body">
-      <a href="{{project.project_link}}" target="_blank">Project Link</a>
+      <a href="{{project.project_link}}" target="_blank" style="font-family: 'Nosifer', cursive;
+      color: brown;">Project Link</a>
+      
       
     </div>
+    {% ratings project%}
   </div>
 
 
@@ -40,10 +46,10 @@
 
   </div>
   {% endfor %}
+  
 </div>
 </div>
 {% endblock %}
 </body>
 
-{% ratings object%}
 </html>

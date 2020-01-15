@@ -4,8 +4,11 @@ import datetime as dt
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import  post_save
+# from djangoratings.fields import RatingField
 
-# Create your models here.
+# class MyModel(models.Model):
+#     rating = RatingField(range=5)
+# # Create your models here.
 
 
 
@@ -17,6 +20,7 @@ class Profile(models.Model):
   bio = models.CharField(max_length=400)
   profile_image = models.ImageField(upload_to='profile/',null=True, blank=True)
   user= models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile',null=True)
+  # rating = RatingField(range=5)
   
 
   def __str__(self):
@@ -47,7 +51,7 @@ class Project(models.Model):
   project_link = models.CharField(max_length=70)
   date=models.DateTimeField(auto_now_add=True)
   user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-  profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
+   
   
 
 
@@ -62,6 +66,11 @@ class Project(models.Model):
   def search_by_title(cls,search_term):
     projects = cls.objects.filter(title__icontains=search_term)
     return projects
+
+  @classmethod
+  def user_projects(cls,user_id):
+    projos=cls.objects.filter(user__id__icontains=user_id)
+    return projos   
 
 
 class Review(models.Model):

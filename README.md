@@ -1,6 +1,6 @@
 ## App Name :
 Awards application
-## An application for users to post photos,posts and comment ,like share what other users have posted as well
+#### An application for users to post their projects and see what other people's projects and rate them
 ## Author
 virginiah periah [https://github.com/virginiah894]
 

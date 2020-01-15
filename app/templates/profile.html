@@ -36,7 +36,7 @@
   
     {% for projo in request.user.project_set.all %}
     
-      <div class="card" >
+      <div class="card" id="one" >
         <img src="/{{projo.project_image.url}}" alt="" style="width: 300px; height: 300px;" >
         <h5>{{projo.title}}</h5>
         <h6>{{projo.description}}</h6>
